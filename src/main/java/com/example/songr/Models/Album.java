@@ -1,5 +1,6 @@
 package com.example.songr.Models;
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Album {
@@ -7,11 +8,21 @@ public class Album {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String title;
+    public String title;
     private String artist;
     private String imageUrl;
     private int songCount;
     private int length;
+    @OneToMany(mappedBy = "songAlbum")
+    private List<Song> songs;
+
+    public List<Song> getSongs() {
+        return songs;
+    }
+
+    public void setSongs(List<Song> songs) {
+        this.songs = songs;
+    }
 
     public Album(){}
 
